@@ -15,6 +15,8 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Logout from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 
+import logo from '../../images/logo.png';
+
 const Header = () => {
 
     const [sticky, setSticky] = useState(false);
@@ -48,7 +50,7 @@ const Header = () => {
                     <Grid item xs={6} md={3}>
                         <div className="header_left">
                             <Link to="/">
-                                <p>Logo</p>
+                                <img src={logo} alt="Logo" className="logo" />
                             </Link>
                         </div>
                     </Grid>

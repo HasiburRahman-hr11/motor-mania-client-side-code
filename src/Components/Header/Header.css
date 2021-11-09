@@ -29,7 +29,7 @@
 }
 
 .logo {
-    max-width: 110px;
+    max-width: 140px;
 }
 
 ul.main_menu {
@@ -46,11 +46,12 @@ ul.main_menu li a {
     padding: 10px;
     transition: all 0.4s ease;
     font-weight: 500;
+    font-family: 'Oswald', sans-serif;
 }
 
 ul.main_menu li a:hover,
 ul.main_menu li a.active {
-    color: var(--color-primary);
+    color: var(--primary-color);
 }
 
 .header_right,
@@ -63,7 +64,7 @@ ul.main_menu li a.active {
 .menu_open,
 .menu_close {
     display: none !important;
-    color: var(--color-primary);
+    color: var(--primary-color);
     width: 50px !important;
     height: 50px !important;
     padding: 5px;

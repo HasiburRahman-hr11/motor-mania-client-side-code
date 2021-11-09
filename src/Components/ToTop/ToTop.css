@@ -8,7 +8,7 @@
     bottom: -500px;
     right: 40px;
     font-size: 35px;
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
     color: #fff;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     cursor: pointer;

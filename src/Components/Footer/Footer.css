@@ -47,7 +47,7 @@ ul.social_list li a{
     transition: all 0.4s ease;
 }
 ul.social_list li a:hover{
-    color: var(--color-primary);
+    color: var(--primary-color);
 }
 .newslatter_box{
     margin-top: 30px;
