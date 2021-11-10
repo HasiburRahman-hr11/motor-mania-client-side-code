@@ -58,7 +58,7 @@ const BannerSection = () => {
                         <Container>
                             <h4>TAKING RIDES TO A NEWER LEVEL</h4>
                             <h1>Find the Best Motorbike For you</h1>
-                            <Link to={`/bikes/${item._id}`} className="btn btn-primary">Explore More</Link>
+                            <Link to={`/bikes/${item._id}`} className="btn btn_primary">Explore More</Link>
                         </Container>
                     </div>
                 </div>

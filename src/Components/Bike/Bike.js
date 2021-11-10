@@ -12,7 +12,7 @@ const Bike = ({ bike }) => {
                 <h4 className="product_price">${bike.price}</h4>
             </div>
             <div className="product_middle">
-                <Link to={`/packages/${bike._id}`}>
+                <Link to={`/bikes/${bike._id}`}>
                     <img src={bike.thumbnail} alt={bike.name} className="product_thumbnail" />
                     <div className="thumbnail_overlay">
                         <AddIcon sx={{
@@ -67,7 +67,7 @@ const Bike = ({ bike }) => {
 
 
                 <div className="product_btn">
-                    <Link to={`/packages/${bike._id}`} className="btn btn-primary">Buy Now</Link>
+                    <Link to={`/bikes/${bike._id}`} className="btn btn_primary">Buy Now</Link>
                 </div>
 
             </div>

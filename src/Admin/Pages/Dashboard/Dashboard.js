@@ -11,7 +11,8 @@ const Dashboard = () => {
                 <Typography variant="h4" component="h4" sx={{
                     fontSize: '22px',
                     fontWeight: 'bold',
-                    mb: '25px'
+                    mb: '25px',
+                    fontFamily:"'Oswald', sans-serif"
                 }}>
                     Dashboard
                 </Typography>

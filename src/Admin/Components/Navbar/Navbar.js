@@ -3,13 +3,11 @@ import './Navbar.css';
 import Box from '@mui/material/Box';
 import { Link, NavLink } from 'react-router-dom';
 import AppsIcon from '@mui/icons-material/Apps';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
-import ReceiptIcon from '@mui/icons-material/Receipt';
+import AddIcon from '@mui/icons-material/Add';
+import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 
 const Navbar = () => {
 
@@ -23,7 +21,8 @@ const Navbar = () => {
                     fontSize: '20px',
                     padding: '20px 0',
                     fontWeight: 'bold',
-                    paddingLeft: '35px'
+                    paddingLeft: '35px',
+                    fontFamily: "'Oswald', sans-serif"
                 }}>
                     <Link to="/">Motor Mania</Link>
                 </Typography>
@@ -37,27 +36,21 @@ const Navbar = () => {
                 }}>
                     <ul className="admin-menu" onClick={() => setOpenMenu(false)}>
                         <li>
-                            <NavLink to="/admin">
+                            <NavLink to="/admin/dashboard">
                                 <AppsIcon className="admin-menu-icon" />
                                 Dashboard
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/admin/services">
-                                <MedicalServicesIcon className="admin-menu-icon" />
-                                Services
+                            <NavLink to="/admin/bikes">
+                                <TwoWheelerIcon className="admin-menu-icon" />
+                                Bikes
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/admin/appointments">
-                                <CalendarTodayIcon className="admin-menu-icon" />
-                                Appointments
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/admin/users">
-                                <PeopleOutlineIcon className="admin-menu-icon" />
-                                Manage Users
+                            <NavLink to="/admin/bikes/add">
+                                <AddIcon className="admin-menu-icon" />
+                                Add Bike
                             </NavLink>
                         </li>
                     </ul>
@@ -76,7 +69,7 @@ const Navbar = () => {
                 height: '60px',
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: 'var(--primary-color)',
+                backgroundColor: '#1E323E',
                 position: 'fixed',
                 top: '0',
                 left: '0',

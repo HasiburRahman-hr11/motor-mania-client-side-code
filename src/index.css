@@ -17,6 +17,7 @@ body {
   scroll-behavior: smooth;
   color: #333;
   font-size: 15px;
+  font-weight: 500;
 }
 
 code {
@@ -56,7 +57,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+label {
   font-family: 'Oswald', sans-serif;
 }
 
@@ -65,8 +67,9 @@ h6 {
 .btn {
   padding: 10px 22px;
   min-width: 100px;
-  display: inline-block;
-  line-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   height: 50px;
   font-size: 15px;
@@ -74,14 +77,65 @@ h6 {
   transition: all 0.4s ease;
 }
 
-.btn-primary {
+.btn_primary {
   color: #fff;
   background-color: var(--primary-color);
   border-radius: 30px;
+  border: 1px solid var(--primary-color);
 }
 
-.btn-primary:hover {
+.btn_primary:hover {
   background-color: var(--primary-hover);
+}
+
+/* Form */
+label{
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.input_group{
+  margin-bottom: 15px;
+}
+.form_control{
+  height: 40px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: normal;
+}
+.form_control::placeholder{
+  font-weight: normal;
+  color: #999;
+}
+
+/* Sign In and Sign Up */
+.auth_form_wrapper{
+  max-width: 450px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 30px 20px;
+  border-radius: 5px;
+}
+.auth_form_wrapper h2{
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--primary-color);
+  font-size: 22px;
+  text-transform: uppercase;
+}
+.auth_toggler{
+  text-align: center;
+  padding-top: 30px;
+  color: #999;
+  font-size: 14px;
+  font-weight: 500;
+}
+.auth_toggler a{
+  color: var(--primary-color);
+  padding-left: 5px;
+  font-weight: 600;
 }
 
 /* Section */

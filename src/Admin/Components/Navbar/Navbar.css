@@ -1,7 +1,8 @@
 .admin-navbar {
     width: 270px;
-    background: rgb(25, 211, 176);
-    background: linear-gradient(180deg, rgba(25, 211, 176, 1) 0%, rgba(22, 210, 195, 1) 40%, rgba(16, 207, 233, 1) 100%);
+    /* background: rgb(25, 211, 176);
+    background: linear-gradient(180deg, rgba(25, 211, 176, 1) 0%, rgba(22, 210, 195, 1) 40%, rgba(16, 207, 233, 1) 100%); */
+    background-color: #1E323E;
     position: fixed;
     left: 0;
     top: 0;

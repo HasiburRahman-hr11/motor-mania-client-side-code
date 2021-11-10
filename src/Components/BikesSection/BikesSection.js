@@ -26,7 +26,7 @@ const BikesSection = () => {
                     </Grid>
 
                     <div className="section_more_btn">
-                        <Link to="/shop" className="btn btn-primary">Explore More</Link>
+                        <Link to="/inventory" className="btn btn_primary">Explore More</Link>
                     </div>
                 </div>
             </Container>

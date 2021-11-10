@@ -16,8 +16,11 @@ import Logout from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 
 import logo from '../../images/logo.png';
+import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
+
+    const { user } = useAuth();
 
     const [sticky, setSticky] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -65,7 +68,7 @@ const Header = () => {
                                         <NavLink exact to="/" activeClassName="active">Home</NavLink>
                                     </li>
                                     <li className="menu_item" onClick={() => setMenuOpen(false)}>
-                                        <NavLink exact to="/shop" activeClassName="active">Inventory</NavLink>
+                                        <NavLink exact to="/inventory" activeClassName="active">Inventory</NavLink>
                                     </li>
                                     <li className="menu_item" onClick={() => setMenuOpen(false)}>
                                         <NavLink exact to="/about" activeClassName="active">About Us</NavLink>
@@ -74,10 +77,17 @@ const Header = () => {
                                         <NavLink exact to="/contact" activeClassName="active">Contact Us</NavLink>
                                     </li>
 
-                                    <IconButton onClick={handleMenuIconClick} size="small">
-                                        <Avatar sx={{ width: 32, height: 32 }}>A
-                                        </Avatar>
-                                    </IconButton>
+                                    {user.email || user.displayName ? (
+                                        <IconButton onClick={handleMenuIconClick} size="small">
+                                            <Avatar sx={{ width: 32, height: 32 }}>
+                                                {user?.displayName?.substr(0, 1).toUpperCase()}
+                                            </Avatar>
+                                        </IconButton>
+                                    ) : (
+                                        <li className="menu_item" onClick={() => setMenuOpen(false)}>
+                                            <Link exact to="/signin" activeClassName="active">Sign In</Link>
+                                        </li>
+                                    )}
 
 
                                     <Menu
@@ -133,17 +143,21 @@ const Header = () => {
                                             </ListItemIcon>
                                             Logout
                                         </MenuItem>
-                                        <Divider />
-                                        <MenuItem onClick={() => {
-                                            setMenuOpen(false);
-                                        }}>
-                                            <Link to="/admin/dashboard" className="menu_link">
-                                                <ListItemIcon>
-                                                    <Logout fontSize="small" />
-                                                </ListItemIcon>
-                                                Dashboard
-                                            </Link>
-                                        </MenuItem>
+                                        {user.isAdmin && (
+                                            <>
+                                                <Divider />
+                                                <MenuItem onClick={() => {
+                                                    setMenuOpen(false);
+                                                }}>
+                                                    <Link to="/admin/dashboard" className="menu_link">
+                                                        <ListItemIcon>
+                                                            <Logout fontSize="small" />
+                                                        </ListItemIcon>
+                                                        Dashboard
+                                                    </Link>
+                                                </MenuItem>
+                                            </>
+                                        )}
 
                                     </Menu>
                                 </ul>
