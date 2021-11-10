@@ -1,4 +1,4 @@
-import './HomeBanner.css';
+import './BannerSection.css';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import Container from '@mui/material/Container';
@@ -34,7 +34,7 @@ function SamplePrevArrow(props) {
 }
 /* --------- Slick Custom Arrow Components ---------- */
 
-const Banner = () => {
+const BannerSection = () => {
 
     const settings = {
         dots: false,
@@ -68,5 +68,5 @@ const Banner = () => {
     );
 };
 
-export default Banner;
+export default BannerSection;
 

@@ -26,15 +26,15 @@ const Bike = ({ bike }) => {
             </div>
             <div className="product_bottom">
                 <Grid container spacing={3} className="product_meta">
-                    <Grid item md={4} xs={12} className="product_meta_item">
+                    <Grid item sm={4} xs={4} className="product_meta_item">
                         <h4>Year</h4>
                         <p>{bike.year}</p>
                     </Grid>
-                    <Grid item md={4} xs={12} className="product_meta_item">
+                    <Grid item sm={4} xs={4} className="product_meta_item">
                         <h4>Type</h4>
                         <p style={{ textTransform: 'capitalize' }}> {bike.type}</p>
                     </Grid>
-                    <Grid item md={4} xs={12} className="product_meta_item">
+                    <Grid item sm={4} xs={4} className="product_meta_item">
                         <h4>Brand</h4>
                         <p style={{ textTransform: 'uppercase' }}>{bike.brand}</p>
                     </Grid>
@@ -43,7 +43,7 @@ const Bike = ({ bike }) => {
 
 
                 <Grid container spacing={3} className="product_spaces">
-                    <Grid item md={6} xs={12} className="product_space_item">
+                    <Grid item sm={6} xs={12} className="product_space_item">
                         <div>
                             <h4>Engine Type</h4>
                             <p>{bike.engineType}</p>
@@ -53,7 +53,7 @@ const Bike = ({ bike }) => {
                             <p>{bike.displacement}</p>
                         </div>
                     </Grid>
-                    <Grid item md={6} xs={12} className="product_space_item">
+                    <Grid item sm={6} xs={12} className="product_space_item">
                         <div>
                             <h4>ENGINE POWER</h4>
                             <p>{bike.power}</p>

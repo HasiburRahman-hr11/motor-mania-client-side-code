@@ -1,11 +1,12 @@
 import React from 'react';
-import './HomeBikes.css';
+import './BikesSection.css';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { bikes } from '../../fakeData';
 import Bike from '../Bike/Bike';
+import { Link } from 'react-router-dom';
 
-const HomeBikes = () => {
+const BikesSection = () => {
     return (
         <section className="section home-bikes">
             <Container fixed>
@@ -18,15 +19,19 @@ const HomeBikes = () => {
                 <div className="section_body">
                     <Grid container spacing={3}>
                         {bikes.map(bike => (
-                            <Grid item md={4} sm={6} xs={12} key={bike._id}>
+                            <Grid item md={4} xs={12} key={bike._id}>
                                 <Bike bike={bike} />
                             </Grid>
                         ))}
                     </Grid>
+
+                    <div className="section_more_btn">
+                        <Link to="/shop" className="btn btn-primary">Explore More</Link>
+                    </div>
                 </div>
             </Container>
         </section>
     );
 };
 
-export default HomeBikes;
+export default BikesSection;

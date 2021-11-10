@@ -83,8 +83,3 @@
     justify-content: center;
     text-align: center;
 }
-
-.product .btn.btn-primary:hover {
-    background-color: var(--primary-color);
-    color: #fff;
-}
