@@ -46,6 +46,13 @@
     align-items: center;
     justify-content: center;
     color: #fff;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+.slider_arrow:hover{
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
 }
 
 .slider_prev {

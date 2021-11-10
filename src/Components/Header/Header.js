@@ -65,7 +65,7 @@ const Header = () => {
                                         <NavLink exact to="/" activeClassName="active">Home</NavLink>
                                     </li>
                                     <li className="menu_item" onClick={() => setMenuOpen(false)}>
-                                        <NavLink exact to="/packages" activeClassName="active">Packages</NavLink>
+                                        <NavLink exact to="/shop" activeClassName="active">Inventory</NavLink>
                                     </li>
                                     <li className="menu_item" onClick={() => setMenuOpen(false)}>
                                         <NavLink exact to="/about" activeClassName="active">About Us</NavLink>
@@ -119,8 +119,11 @@ const Header = () => {
                                             <Avatar /> Hello
                                         </MenuItem>
                                         <MenuItem onClick={() => setMenuOpen(false)}>
-                                            <Avatar >5</Avatar >
-                                            <Link to="/my-orders" className="menu_link">My Orders</Link>
+
+                                            <Link to="/my-orders" className="menu_link">
+                                                <Avatar >5</Avatar >
+                                                My Orders
+                                            </Link>
                                         </MenuItem>
                                         <MenuItem onClick={() => {
                                             setMenuOpen(false);
@@ -130,8 +133,17 @@ const Header = () => {
                                             </ListItemIcon>
                                             Logout
                                         </MenuItem>
-
-
+                                        <Divider />
+                                        <MenuItem onClick={() => {
+                                            setMenuOpen(false);
+                                        }}>
+                                            <Link to="/admin/dashboard" className="menu_link">
+                                                <ListItemIcon>
+                                                    <Logout fontSize="small" />
+                                                </ListItemIcon>
+                                                Dashboard
+                                            </Link>
+                                        </MenuItem>
 
                                     </Menu>
                                 </ul>

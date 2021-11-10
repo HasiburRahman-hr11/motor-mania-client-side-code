@@ -83,7 +83,8 @@ ul.main_menu li a.active {
 
 .menu_link {
     width: 100%;
-    display: inline-block;
+    display: flex;
+    align-items: center;
 }
 
 @media only screen and (max-width:900px) {
