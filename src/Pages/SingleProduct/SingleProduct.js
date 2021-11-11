@@ -65,7 +65,7 @@ const SingleProduct = () => {
             }
         }
         getSingleBike();
-    }, [params.id , orderDetails]);
+    }, [params.id]);
 
     if (loading) {
         return <Loading />
