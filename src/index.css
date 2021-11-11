@@ -202,3 +202,23 @@ textarea.form_control{
     padding-bottom: 30px;
   }
 }
+@media only screen and (max-width:768px){
+  .section_header h4 {
+    font-size: 18px;
+  }
+  
+  .section_header h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width:450px){
+  .section_header h4 {
+    font-size: 16px;
+  }
+  
+  .section_header h2 {
+    font-size: 25px;
+  }
+}

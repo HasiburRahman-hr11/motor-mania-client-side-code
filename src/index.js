@@ -5,12 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContextProvider from './Context/AuthContext/AuthContext';
 import ProductContextProvider from './Context/ProductContext/ProductContext';
+import OrderContextProvider from './Context/OrderContext/OrderContext';
+import ReviewContextProvider from './Context/ReviewContext/ReviewContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
       <ProductContextProvider>
-        <App />
+        <OrderContextProvider>
+          <ReviewContextProvider>
+            <App />
+          </ReviewContextProvider>
+        </OrderContextProvider>
       </ProductContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,

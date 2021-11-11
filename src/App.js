@@ -17,6 +17,10 @@ import PrivateRoute from './utils/privateRoute';
 import AdminRoute from './utils/AdminRoute';
 import AddBike from './Admin/Pages/AddBike/AddBike';
 import AllBikes from './Admin/Pages/AllBikes/AllBikes';
+import MyOrders from './Pages/MyOrders/MyOrders';
+import Review from './Pages/Review/Review';
+import Payment from './Pages/Payment/Payment';
+import AddReview from './Pages/AddReview/AddReview';
 
 const App = () => {
 
@@ -35,6 +39,18 @@ const App = () => {
         </Route>
         <PrivateRoute path="/bikes/:id">
           <SingleProduct />
+        </PrivateRoute>
+        <PrivateRoute exact path="/my-orders">
+          <MyOrders />
+        </PrivateRoute>
+        <PrivateRoute exact path="/review">
+          <Review />
+        </PrivateRoute>
+        <PrivateRoute exact path="/review/add">
+          <AddReview />
+        </PrivateRoute>
+        <PrivateRoute exact path="/payment">
+          <Payment />
         </PrivateRoute>
 
 

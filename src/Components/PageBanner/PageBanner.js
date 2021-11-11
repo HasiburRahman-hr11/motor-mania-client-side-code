@@ -18,7 +18,10 @@ const PageBanner = ({ bg, title, subtitle }) => {
                 xs: '200px'
             },
             clipPath: 'polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0)',
-            marginBottom:'70px'
+            marginBottom:{
+                md:'70px',
+                xs:'20px'
+            }
         }}>
             <Box component="div" sx={{
                 textAlign:'center'
@@ -29,20 +32,24 @@ const PageBanner = ({ bg, title, subtitle }) => {
                         xs: '16px'
                     },
                     textTransform: 'uppercase',
-                    color:'var(--primary-color)'
+                    color:'var(--primary-color)',
+                    fontFamily:"'Oswald', sans-serif",
+                    fontWeight:'600'
                 }}>
-                    <h2>{subtitle}</h2>
+                    {subtitle}
                 </Typography>
                 <Typography variant="h2" component="h2" sx={{
                     fontSize: {
-                        md: '32px',
+                        md: '35px',
                         sm: '25px',
                         xs: '20px'
                     },
                     textTransform: 'uppercase',
-                    color:'#fff'
+                    color:'#fff',
+                    fontFamily:"'Oswald', sans-serif",
+                    fontWeight:'600'
                 }}>
-                    <h2>{title}</h2>
+                   {title}
                 </Typography>
             </Box>
         </Box >

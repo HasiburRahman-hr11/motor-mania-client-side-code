@@ -86,6 +86,11 @@ ul.main_menu li a.active {
     display: flex;
     align-items: center;
 }
+.user_menu a{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
 
 @media only screen and (max-width:900px) {
     .menu_open {

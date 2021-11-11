@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Inventory.css';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { bikes } from '../../fakeData';
 import Bike from '../../Components/Bike/Bike';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import PageBanner from '../../Components/PageBanner/PageBanner';
+import { ProductContext } from '../../Context/ProductContext/ProductContext';
 
 const Shop = () => {
+
+    const {bikes} = useContext(ProductContext);
     return (
         <>
             <Header />

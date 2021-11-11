@@ -1,35 +1,75 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './SingleProduct.css';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
-import { useParams } from 'react-router-dom';
-
-import { bikes } from '../../fakeData';
+import CircularProgress from '@mui/material/CircularProgress';
+import axios from 'axios';
+import { useParams , useHistory } from 'react-router-dom';
+import Loading from '../../Components/Loading/Loading';
 
 import year from '../../images/single-year.png';
 import category from '../../images/single-category.png';
 import brand from '../../images/single-bike.png';
 import engine from '../../images/single-engine.png';
 import speed from '../../images/single-speed.png';
+import useAuth from '../../hooks/useAuth';
+import { successNotify, errorNotify } from '../../utils/toastify';
+import { OrderContext } from '../../Context/OrderContext/OrderContext';
 
 const SingleProduct = () => {
 
+    const { user } = useAuth();
+    const { orders, setOrders } = useContext(OrderContext);
     const params = useParams();
+    const history = useHistory();
     const [bike, setBike] = useState({});
     const [loading, setLoading] = useState(true);
+    const [progress, setProgress] = useState(false);
+
+    const [orderDetails, setOrderDetails] = useState({
+        name: user.displayName || '',
+        email: user.email || '',
+        address: '',
+        phone: '',
+        productName: bike.name || '',
+        productId: bike._id || ''
+    });
+
+
+    const handleOrderSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const { data } = await axios.post('http://localhost:8000/orders/create', orderDetails);
+            setOrders({ data, ...orders });
+            successNotify('Order placed successfully');
+            history.push('/my-orders');
+        } catch (error) {
+            console.log(error);
+            errorNotify('Something went wrong!')
+        }
+    }
 
     useEffect(() => {
-        const getSingleBike = () => {
-            const myBike = bikes.find(bike => bike._id === params.id);
-            setBike(myBike)
-            setLoading(false)
+        const getSingleBike = async () => {
+            try {
+                const { data } = await axios.get(`http://localhost:8000/products/${params.id}`)
+                setBike(data);
+                setOrderDetails({ ...orderDetails, productName: data.name, productId: data._id })
+                setLoading(false);
+            } catch (error) {
+                console.log(error)
+                setLoading(false);
+            }
         }
         getSingleBike();
-    }, [params.id])
+    }, [params.id]);
+
+    if (loading) {
+        return <Loading />
+    }
     return (
         <>
             <Header />
@@ -80,9 +120,9 @@ const SingleProduct = () => {
                         <Grid item md={5} xs={12}>
                             <div className="order_form_wrapper">
                                 <h3>Buy <span style={{
-                                    color:'var(--primary-color)'
+                                    color: 'var(--primary-color)'
                                 }}>{bike.name}</span></h3>
-                                <form action="">
+                                <form action="" onSubmit={handleOrderSubmit}>
                                     <div className="input_group">
                                         <label htmlFor="name">Name</label>
                                         <input
@@ -91,6 +131,11 @@ const SingleProduct = () => {
                                             name="name"
                                             placeholder="Your Name"
                                             className="form_control"
+                                            required
+                                            value={orderDetails.name}
+                                            onChange={(e) => setOrderDetails({
+                                                ...orderDetails, name: e.target.value
+                                            })}
                                         />
                                     </div>
                                     <div className="input_group">
@@ -101,6 +146,11 @@ const SingleProduct = () => {
                                             name="email"
                                             placeholder="Email Address"
                                             className="form_control"
+                                            required
+                                            value={orderDetails.email}
+                                            onChange={(e) => setOrderDetails({
+                                                ...orderDetails, email: e.target.value
+                                            })}
                                         />
                                     </div>
                                     <div className="input_group">
@@ -111,6 +161,11 @@ const SingleProduct = () => {
                                             name="phone"
                                             placeholder="Phone Number"
                                             className="form_control"
+                                            required
+                                            value={orderDetails.phone}
+                                            onChange={(e) => setOrderDetails({
+                                                ...orderDetails, phone: e.target.value
+                                            })}
                                         />
                                     </div>
                                     <div className="input_group">
@@ -121,13 +176,24 @@ const SingleProduct = () => {
                                             name="address"
                                             placeholder="Your Address"
                                             className="form_control"
+                                            required
+                                            value={orderDetails.address}
+                                            onChange={(e) => setOrderDetails({
+                                                ...orderDetails, address: e.target.value
+                                            })}
                                         />
                                     </div>
 
                                     <Box component="div" sx={{
-                                        mt:'20px'
+                                        mt: '20px'
                                     }}>
-                                        <button className="btn btn_primary" type="submit">Submit</button>
+                                        <button className="btn btn_primary" type="submit">
+                                            {progress ? <CircularProgress sx={{
+                                                color: '#fff',
+                                                width: '25px !important',
+                                                height: '25px !important'
+                                            }} /> : 'Submit'}
+                                        </button>
                                     </Box>
                                 </form>
                             </div>

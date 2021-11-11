@@ -86,18 +86,18 @@
     }
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:768px) {
     .banner_content {
         padding-left: 30px;
     }
 
     .banner_content h1 {
-        font-size: 32px;
-        line-height: 35px;
+        font-size: 25px;
+        line-height: 27px;
     }
 
     .banner_content h4 {
-        font-size: 25px;
+        font-size: 18px;
     }
 
     .slider_arrow {
@@ -109,19 +109,3 @@
     }
 }
 
-@media only screen and (max-width:350px) {
-    .banner_content {
-        padding-left: 15px;
-    }
-
-    .banner_content h1 {
-        font-size: 25px;
-        line-height: 25px;
-        margin-bottom: 10px;
-    }
-
-    .banner_content h4 {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-}

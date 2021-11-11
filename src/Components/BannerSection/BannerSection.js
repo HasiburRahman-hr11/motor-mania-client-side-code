@@ -5,7 +5,8 @@ import Container from '@mui/material/Container';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-import { bikes } from '../../fakeData';
+import { useContext } from 'react';
+import { ProductContext } from '../../Context/ProductContext/ProductContext';
 
 
 /* --------- Slick Custom Arrow Components ---------- */
@@ -36,6 +37,8 @@ function SamplePrevArrow(props) {
 
 const BannerSection = () => {
 
+    const {bikes} = useContext(ProductContext);
+
     const settings = {
         dots: false,
         infinite: true,
@@ -51,14 +54,14 @@ const BannerSection = () => {
     return (
         <Slider {...settings}>
 
-            {bikes.slice(0, 6).map((item, ind) => (
-                <div key={item._id} className="banner_item">
-                    <img src={item.thumbnail} alt={item.title} />
+            {bikes.slice(0, 6).map(bike => (
+                <div key={bike._id} className="banner_item">
+                    <img src={bike.thumbnail} alt={bike.name} />
                     <div className="banner_content">
                         <Container>
                             <h4>TAKING RIDES TO A NEWER LEVEL</h4>
                             <h1>Find the Best Motorbike For you</h1>
-                            <Link to={`/bikes/${item._id}`} className="btn btn_primary">Explore More</Link>
+                            <Link to="/inventory" className="btn btn_primary">Explore More</Link>
                         </Container>
                     </div>
                 </div>

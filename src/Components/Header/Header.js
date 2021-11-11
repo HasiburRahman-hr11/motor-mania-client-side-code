@@ -20,7 +20,7 @@ import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
 
-    const { user , firebaseSignOut , isAdmin } = useAuth();
+    const { user, firebaseSignOut, isAdmin } = useAuth();
 
     const [sticky, setSticky] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -91,6 +91,7 @@ const Header = () => {
 
 
                                     <Menu
+                                    className="user_menu"
                                         anchorEl={anchorEl}
                                         open={open}
                                         onClose={handleMenuIconClose}
@@ -126,9 +127,15 @@ const Header = () => {
                                     >
 
                                         <MenuItem onClick={() => setMenuOpen(false)}>
-                                            <Avatar /> Hello
+                                            <Link to="/my-orders">My Orders</Link>
                                         </MenuItem>
-                                        
+                                        <MenuItem onClick={() => setMenuOpen(false)}>
+                                            <Link to="/review">Review</Link>
+                                        </MenuItem>
+                                        <MenuItem onClick={() => setMenuOpen(false)}>
+                                            <Link to="/payment">Payment</Link>
+                                        </MenuItem>
+
                                         <MenuItem onClick={() => {
                                             setMenuOpen(false);
                                             firebaseSignOut();
@@ -145,10 +152,7 @@ const Header = () => {
                                                     setMenuOpen(false);
                                                 }}>
                                                     <Link to="/admin/dashboard" className="menu_link">
-                                                        <ListItemIcon>
-                                                            <Logout fontSize="small" />
-                                                        </ListItemIcon>
-                                                        Dashboard
+                                                        Admin Panel
                                                     </Link>
                                                 </MenuItem>
                                             </div>
