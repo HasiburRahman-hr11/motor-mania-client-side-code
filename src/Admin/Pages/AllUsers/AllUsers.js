@@ -14,7 +14,7 @@ const AllUsers = () => {
 
     const { users, setUsers, loading } = useContext(UserContext);
 
-    const handleDeleteOrder = async (id) => {
+    const handleDeleteUser = async (id) => {
         const agree = window.confirm('Delete this user?');
 
         if (agree) {
@@ -96,7 +96,7 @@ const AllUsers = () => {
                                             justifyContent: 'flex-end !important'
                                         }}>
                                             <DeleteOutlineIcon
-                                                onClick={() => handleDeleteOrder(user._id)}
+                                                onClick={() => handleDeleteUser(user._id)}
                                                 className="admin_edit_icon"
                                                 sx={{
                                                     width: '35px',

@@ -15,7 +15,7 @@ const BikesSection = ({bikes}) => {
                 </div>
                 <div className="section_body">
                     <Grid container spacing={3}>
-                        {bikes.map(bike => (
+                        {bikes.slice(0 , 6).map(bike => (
                             <Grid item lg={4} md={6} xs={12} key={bike._id}>
                                 <Bike bike={bike} />
                             </Grid>
