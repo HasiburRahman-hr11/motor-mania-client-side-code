@@ -8,37 +8,38 @@ import { useParams, useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 import { successNotify, errorNotify } from '../../../utils/toastify';
-import { OrderContext } from '../../../Context/OrderContext/OrderContext';
+import { UserContext } from '../../../Context/UserContext/UserContext';
 import Loading from '../../../Components/Loading/Loading';
 
-const EditOrder = () => {
+const EditUser = () => {
 
     const { id } = useParams();
     const history = useHistory();
 
-    const { orders, setOrders } = useContext(OrderContext);
+    const { users, setUsers } = useContext(UserContext);
     const [loading, setLoading] = useState(true);
-    const [orderData, setOrderData] = useState({
-        status: ''
+    const [userData, setUserData] = useState({
+        role: '',
+        userName: '',
     });
     const [progress, setProgress] = useState(false)
 
     const handleChange = (e) => {
-        setOrderData({ ...orderData, [e.target.name]: e.target.value });
+        setUserData({ ...userData, [e.target.name]: e.target.value });
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProgress(true);
         try {
-            const { data } = await axios.put(`https://motor-mania.herokuapp.com/orders/${id}`, orderData);
-            const restOrders = orders.filter(order => order._id !== data._id);
-            const newOrders = [data, ...restOrders]
-            const sortedOrders = newOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-            setOrders(sortedOrders);
-            successNotify('Order updated successfully');
+            const { data } = await axios.put(`https://motor-mania.herokuapp.com/users/${id}`, userData);
+            const restUsers = users.filter(user => user._id !== data._id);
+            const newUsers = [data, ...restUsers]
+            const sortedUsers = newUsers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setUsers(sortedUsers);
+            successNotify('User updated successfully');
             setProgress(false);
-            history.push('/admin/orders');
+            history.push('/admin/users');
         } catch (error) {
             console.log(error);
             errorNotify('Something went wrong!');
@@ -47,17 +48,17 @@ const EditOrder = () => {
     }
 
     useEffect(() => {
-        const getOrderInfo = async () => {
+        const getUserInfo = async () => {
             try {
-                const { data } = await axios.get(`https://motor-mania.herokuapp.com/orders/${id}`);
-                setOrderData({ status: data.status })
+                const { data } = await axios.get(`https://motor-mania.herokuapp.com/users/find/${id}`);
+                setUserData({role: data.role, userName: data.userName })
                 setLoading(false);
             } catch (error) {
                 console.log(error);
                 setLoading(false);
             }
         }
-        getOrderInfo();
+        getUserInfo();
     }, [id]);
 
     if (loading) {
@@ -87,19 +88,31 @@ const EditOrder = () => {
                     <form action="" onSubmit={handleSubmit}>
 
                         <Grid container spacing={3}>
-                            <Grid item md={4} sm={6} xs={12}>
+                            <Grid item sm={6} xs={12}>
                                 <div className="input_group">
-                                    <label htmlFor="status">Order Status</label>
+                                    <label htmlFor="userName">User Name</label>
+                                    <input
+                                        type="text"
+                                        name="userName"
+                                        id="userName"
+                                        value={userData.userName}
+                                        onChange={handleChange}
+                                        className="form_control"
+                                    />
+                                </div>
+                            </Grid>
+                            <Grid item sm={6} xs={12}>
+                                <div className="input_group">
+                                    <label htmlFor="role">User Role</label>
                                     <select
-                                        name="status"
-                                        id="status"
-                                        value={orderData.status}
+                                        name="role"
+                                        id="role"
+                                        value={userData.role}
                                         onChange={handleChange}
                                         className="form_control"
                                     >
-                                        <option value="pending">Pending</option>
-                                        <option value="processing">Processing</option>
-                                        <option value="shipped">Shipped</option>
+                                        <option value="subscriber">Subscriber</option>
+                                        <option value="admin">Admin</option>
                                     </select>
                                 </div>
                             </Grid>
@@ -125,4 +138,4 @@ const EditOrder = () => {
     );
 };
 
-export default EditOrder;
+export default EditUser;

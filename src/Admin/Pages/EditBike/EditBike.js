@@ -17,7 +17,6 @@ const EditBike = () => {
     const history = useHistory();
 
     const {bikes , setBikes} = useContext(ProductContext);
-    const [bike , setBike] = useState({});
     const [loading , setLoading] = useState(true);
     const [bikeData, setBikeData] = useState({
         name: '',
@@ -44,7 +43,7 @@ const EditBike = () => {
         e.preventDefault();
         setProgress(true);
         try {
-            const { data } = await axios.put(`http://localhost:8000/products/${id}`, bikeData);
+            const { data } = await axios.put(`https://motor-mania.herokuapp.com/products/${id}`, bikeData);
             const restBikes = bikes.filter(bike => bike._id !== data._id);
             const newBikes = [data, ...restBikes]
             const sortedBikes = newBikes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -62,7 +61,7 @@ const EditBike = () => {
     useEffect(()=>{
         const getBikeInfo = async() =>{
             try {
-                const {data} = await axios.get(`http://localhost:8000/products/${id}`);
+                const {data} = await axios.get(`https://motor-mania.herokuapp.com/products/${id}`);
                 setBikeData({
                     name: data.name,
                     brand: data.brand,

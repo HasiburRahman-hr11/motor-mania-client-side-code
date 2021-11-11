@@ -93,7 +93,7 @@ const useFirebase = () => {
     // Save User to Database
     const saveUserToDB = async (userName, email) => {
         try {
-            const { data } = await axios.post('http://localhost:8000/users/create', { userName, email });
+            const { data } = await axios.post('https://motor-mania.herokuapp.com/users/create', { userName, email });
 
         } catch (error) {
             console.log(error);
@@ -108,7 +108,7 @@ const useFirebase = () => {
                 setUser(user);
 
                 // Set Admin
-                const { data } = await axios.get(`http://localhost:8000/users/${user.email}`);
+                const { data } = await axios.get(`https://motor-mania.herokuapp.com/users/${user.email}`);
                 if (data?.role === 'admin') {
                     setIsAdmin(true);
                 } else {

@@ -55,8 +55,7 @@ const AddBike = () => {
                 description: '',
                 thumbnail: ''
             });
-
-            setBikes([data , ...bikes]);
+            setBikes([data, ...bikes]);
             successNotify('Bike added successfully');
             setProgress(false);
             history.push('/admin/bikes');

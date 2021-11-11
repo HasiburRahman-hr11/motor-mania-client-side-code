@@ -19,7 +19,7 @@ const AllBikes = () => {
 
         if (agree) {
             try {
-                await axios.delete(`http://localhost:8000/products/${id}`);
+                await axios.delete(`https://motor-mania.herokuapp.com/products/${id}`);
                 const restBikes = bikes.filter(bike => bike._id !== id);
                 setBikes(restBikes);
                 successNotify('Bike deleted successfully');

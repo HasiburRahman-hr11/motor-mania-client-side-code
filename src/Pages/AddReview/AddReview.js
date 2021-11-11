@@ -31,8 +31,8 @@ const AddReview = () => {
                     ...reviewData,
                     rating
                 }
-                const {data} = await axios.post('http://localhost:8000/reviews/create' , reviewInfo);
-                setReviews({data , ...reviews});
+                const {data} = await axios.post('https://motor-mania.herokuapp.com/reviews/create' , reviewInfo);
+                setReviews([data , ...reviews]);
                 successNotify('Review added successfully');
                 history.push('/review');
             } catch (error) {

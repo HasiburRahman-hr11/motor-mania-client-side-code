@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
 import './BikesSection.css';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Bike from '../Bike/Bike';
 import { Link } from 'react-router-dom';
-import {ProductContext} from '../../Context/ProductContext/ProductContext'
-const BikesSection = () => {
-    const {bikes} = useContext(ProductContext)
+const BikesSection = ({bikes}) => {
     return (
         <section className="section home-bikes">
             <Container fixed>

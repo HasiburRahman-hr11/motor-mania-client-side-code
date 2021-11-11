@@ -27,7 +27,7 @@ const MyOrders = () => {
 
         if (agree) {
             try {
-                await axios.delete(`http://localhost:8000/orders/${id}`);
+                await axios.delete(`https://motor-mania.herokuapp.com/orders/${id}`);
                 const restOrders = myOrders.filter(order => order._id !== id);
                 setMyOrders(restOrders);
                 
@@ -43,7 +43,7 @@ const MyOrders = () => {
         const getMyOrders = async () => {
             try {
 
-                const { data } = await axios.get(`http://localhost:8000/orders/user/${user.email}`)
+                const { data } = await axios.get(`https://motor-mania.herokuapp.com/orders/user/${user.email}`)
                 setMyOrders(data);
                 setLoading(false);
             } catch (error) {

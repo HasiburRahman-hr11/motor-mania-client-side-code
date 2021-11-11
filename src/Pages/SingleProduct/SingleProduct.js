@@ -42,7 +42,7 @@ const SingleProduct = () => {
     const handleOrderSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post('http://localhost:8000/orders/create', orderDetails);
+            const { data } = await axios.post('https://motor-mania.herokuapp.com/orders/create', orderDetails);
             setOrders({ data, ...orders });
             successNotify('Order placed successfully');
             history.push('/my-orders');
@@ -55,7 +55,7 @@ const SingleProduct = () => {
     useEffect(() => {
         const getSingleBike = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:8000/products/${params.id}`)
+                const { data } = await axios.get(`https://motor-mania.herokuapp.com/products/${params.id}`)
                 setBike(data);
                 setOrderDetails({ ...orderDetails, productName: data.name, productId: data._id })
                 setLoading(false);
@@ -65,7 +65,7 @@ const SingleProduct = () => {
             }
         }
         getSingleBike();
-    }, [params.id]);
+    }, [params.id , orderDetails]);
 
     if (loading) {
         return <Loading />

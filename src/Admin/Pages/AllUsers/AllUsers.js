@@ -8,21 +8,21 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import axios from 'axios';
 import { successNotify, errorNotify } from '../../../utils/toastify';
-import { OrderContext } from '../../../Context/OrderContext/OrderContext';
+import { UserContext } from '../../../Context/UserContext/UserContext';
 
-const AllOrders = () => {
+const AllUsers = () => {
 
-    const { orders, setOrders, loading } = useContext(OrderContext);
+    const { users, setUsers, loading } = useContext(UserContext);
 
     const handleDeleteOrder = async (id) => {
-        const agree = window.confirm('Delete this order?');
+        const agree = window.confirm('Delete this user?');
 
         if (agree) {
             try {
-                await axios.delete(`https://motor-mania.herokuapp.com/orders/${id}`);
-                const restOrders = orders.filter(order => order._id !== id);
-                setOrders(restOrders);
-                successNotify('Order deleted successfully');
+                await axios.delete(`https://motor-mania.herokuapp.com/users/${id}`);
+                const resUsers = users.filter(user => user._id !== id);
+                setUsers(resUsers);
+                successNotify('User deleted successfully');
             } catch (error) {
                 console.log(error);
                 errorNotify('Something went wrong!')
@@ -44,33 +44,33 @@ const AllOrders = () => {
                     mb: '25px',
                     fontFamily: "'Oswald', sans-serif"
                 }}>
-                    All Orders
+                    All Users
                 </Typography>
 
                 <Box component="div">
-                    {orders.length > 0 ? (
+                    {users.length > 0 ? (
                         <ul className="admin_orders_list">
-                            {orders.map(order => (
-                                <li key={order._id} className="order_item">
+                            {users.map(user => (
+                                <li key={user._id} className="order_item">
                                     <Box component="div" sx={{
                                         width: {
-                                            sm: '50%',
+                                            sm: '40%',
                                             xs: '100%'
                                         },
                                         textAlign: 'left'
                                     }}>
-                                        <p>Bike</p>
-                                        <h5><Link to={`/bikes/${order.productId}`}>{order.productName}</Link></h5>
+                                        <p>Email</p>
+                                        <h5>{user.email}</h5>
                                     </Box>
                                     <Box component="div" sx={{
                                         width: {
-                                            sm: '25%',
+                                            sm: '30%',
                                             xs: '100%'
                                         },
                                         textAlign: 'left'
                                     }}>
-                                        <p>Ordered by</p>
-                                        <h5>{order.name}</h5>
+                                        <p>Name</p>
+                                        <h5>{user.userName}</h5>
                                     </Box>
                                     <Box component="div" sx={{
                                         width: {
@@ -79,12 +79,12 @@ const AllOrders = () => {
                                         },
                                         textAlign: 'left'
                                     }}>
-                                        <p>Status</p>
-                                        <h5>{order.status}</h5>
+                                        <p>Role</p>
+                                        <h5>{user.role}</h5>
                                     </Box>
                                     <Box component="div" sx={{
                                         width: {
-                                            sm: '20%',
+                                            sm: '15%',
                                             xs: '100%'
                                         },
                                         textAlign: 'right'
@@ -96,7 +96,7 @@ const AllOrders = () => {
                                             justifyContent: 'flex-end !important'
                                         }}>
                                             <DeleteOutlineIcon
-                                                onClick={() => handleDeleteOrder(order._id)}
+                                                onClick={() => handleDeleteOrder(user._id)}
                                                 className="admin_edit_icon"
                                                 sx={{
                                                     width: '35px',
@@ -104,7 +104,7 @@ const AllOrders = () => {
                                                     cursor: 'pointer'
                                                 }} />
 
-                                            <Link to={`/admin/orders/edit/${order._id}`}>
+                                            <Link to={`/admin/users/edit/${user._id}`}>
                                                 <EditIcon className="admin_edit_icon" sx={{
                                                     width: '35px',
                                                     height: '35px',
@@ -129,7 +129,7 @@ const AllOrders = () => {
                                 color: '#999',
                                 fontFamily: "'Oswald', sans-serif"
                             }}>
-                                No Order Found.
+                                No User Found.
                             </Typography>
                         </Box>
                     )}
@@ -139,4 +139,4 @@ const AllOrders = () => {
     );
 };
 
-export default AllOrders;
+export default AllUsers;

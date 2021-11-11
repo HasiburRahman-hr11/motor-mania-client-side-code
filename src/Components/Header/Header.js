@@ -11,7 +11,6 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Logout from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 
@@ -70,12 +69,7 @@ const Header = () => {
                                     <li className="menu_item" onClick={() => setMenuOpen(false)}>
                                         <NavLink exact to="/inventory" activeClassName="active">Inventory</NavLink>
                                     </li>
-                                    <li className="menu_item" onClick={() => setMenuOpen(false)}>
-                                        <NavLink exact to="/about" activeClassName="active">About Us</NavLink>
-                                    </li>
-                                    <li className="menu_item" onClick={() => setMenuOpen(false)}>
-                                        <NavLink exact to="/contact" activeClassName="active">Contact Us</NavLink>
-                                    </li>
+                                    
 
                                     {user.email || user.displayName ? (
                                         <IconButton onClick={handleMenuIconClick} size="small">

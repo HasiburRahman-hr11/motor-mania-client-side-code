@@ -9,7 +9,7 @@ const useOrders = () => {
     useEffect(() => {
         const getAllOrders = async () => {
             try {
-                const { data } = await axios.get('http://localhost:8000/orders');
+                const { data } = await axios.get('https://motor-mania.herokuapp.com/orders');
                 setOrders(data);
                 setLoading(false);
             } catch (error) {

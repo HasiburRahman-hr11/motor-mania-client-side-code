@@ -7,7 +7,7 @@ const useProducts = () => {
     useEffect(() => {
         const getAllBikes = async () => {
             try {
-                const { data } = await axios.get('http://localhost:8000/products');
+                const { data } = await axios.get('https://motor-mania.herokuapp.com/products');
                 setBikes(data);
                 setLoading(false);
             } catch (error) {

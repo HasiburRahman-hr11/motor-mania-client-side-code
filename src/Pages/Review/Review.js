@@ -29,7 +29,7 @@ const Reviews = () => {
 
         if (agree) {
             try {
-                await axios.delete(`http://localhost:8000/reviews/${id}`);
+                await axios.delete(`https://motor-mania.herokuapp.com/reviews/${id}`);
                 const restReviews = myReviews.filter(review => review._id !== id);
                 setMyReviews(restReviews);
 
@@ -45,7 +45,7 @@ const Reviews = () => {
         const getMyReviews = async () => {
             try {
 
-                const { data } = await axios.get(`http://localhost:8000/reviews/user/${user.email}`)
+                const { data } = await axios.get(`https://motor-mania.herokuapp.com/reviews/user/${user.email}`)
                 setMyReviews(data);
                 setLoading(false);
             } catch (error) {

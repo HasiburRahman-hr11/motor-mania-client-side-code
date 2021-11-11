@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
-const useReviews = () => {
+const useUsers = () => {
 
     const [loading, setLoading] = useState(true);
-    const [reviews, setReviews] = useState([]);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const getAllReviews = async () => {
+        const getAllOrders = async () => {
             try {
-                const { data } = await axios.get('https://motor-mania.herokuapp.com/reviews');
-                setReviews(data);
+                const { data } = await axios.get('https://motor-mania.herokuapp.com/users');
+                setUsers(data);
                 setLoading(false);
             } catch (error) {
                 console.log(error);
                 setLoading(false);
             }
         }
-        getAllReviews();
+        getAllOrders();
     }, []);
 
     return {
-        reviews,
-        setReviews,
+        users,
+        setUsers,
         loading,
         setLoading
     }
 }
-export default useReviews;
+export default useUsers;

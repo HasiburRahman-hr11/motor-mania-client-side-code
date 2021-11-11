@@ -5,9 +5,6 @@ import Container from '@mui/material/Container';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-import { useContext } from 'react';
-import { ProductContext } from '../../Context/ProductContext/ProductContext';
-
 
 /* --------- Slick Custom Arrow Components ---------- */
 function SampleNextArrow(props) {
@@ -35,9 +32,7 @@ function SamplePrevArrow(props) {
 }
 /* --------- Slick Custom Arrow Components ---------- */
 
-const BannerSection = () => {
-
-    const {bikes} = useContext(ProductContext);
+const BannerSection = ({bikes}) => {
 
     const settings = {
         dots: false,

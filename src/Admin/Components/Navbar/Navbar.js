@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import useAuth from '../../../hooks/useAuth';
 import ReceiptIcon from '@mui/icons-material/Receipt';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
 const Navbar = () => {
 
@@ -61,6 +62,12 @@ const Navbar = () => {
                             <NavLink to="/admin/orders">
                                 <ReceiptIcon className="admin-menu-icon" />
                                 Orders
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/admin/users">
+                                <PeopleAltIcon className="admin-menu-icon" />
+                                Users
                             </NavLink>
                         </li>
                     </ul>

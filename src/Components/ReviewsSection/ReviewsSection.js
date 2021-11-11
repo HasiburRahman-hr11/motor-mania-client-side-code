@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './ReviewsSection.css';
 import Container from '@mui/material/Container';
 import Rating from '@mui/material/Rating';
 import Slider from "react-slick";
-import { reviews } from '../../fakeData';
+
+import {ReviewContext} from '../../Context/ReviewContext/ReviewContext';
 
 const Testimonial = () => {
+
+    const {reviews} = useContext(ReviewContext)
 
     const settings = {
         dots: true,
@@ -52,7 +55,7 @@ const Testimonial = () => {
                             <div className="reviews_item" key={ind}>
                                 <div className="reviews_item_wrapper">
                                     <h2>{item.name}</h2>
-                                    <Rating name="read-only" value={item.ratting} readOnly sx={{
+                                    <Rating name="read-only" value={item.rating} readOnly sx={{
                                         color:'var(--primary-color)',
                                         fontSize:'15px'
                                     }} />
