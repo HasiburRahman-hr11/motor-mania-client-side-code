@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import './MyOrders.css';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import PageBanner from '../../Components/PageBanner/PageBanner';

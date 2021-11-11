@@ -9,6 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import useAuth from '../../../hooks/useAuth';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 
 const Navbar = () => {
 
@@ -54,6 +55,12 @@ const Navbar = () => {
                             <NavLink to="/admin/bikes/add">
                                 <AddIcon className="admin-menu-icon" />
                                 Add Bike
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/admin/orders">
+                                <ReceiptIcon className="admin-menu-icon" />
+                                Orders
                             </NavLink>
                         </li>
                     </ul>

@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
+import {useHistory} from 'react-router-dom';
 
 import axios from 'axios';
 import { successNotify, errorNotify } from '../../../utils/toastify';
@@ -11,6 +12,7 @@ import { ProductContext } from '../../../Context/ProductContext/ProductContext';
 
 const AddBike = () => {
 
+    const history = useHistory();
     const {bikes , setBikes} = useContext(ProductContext);
     const [bikeData, setBikeData] = useState({
         name: '',
@@ -57,6 +59,7 @@ const AddBike = () => {
             setBikes([data , ...bikes]);
             successNotify('Bike added successfully');
             setProgress(false);
+            history.push('/admin/bikes');
         } catch (error) {
             console.log(error);
             errorNotify('Something went wrong!');

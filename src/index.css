@@ -89,29 +89,34 @@ label {
 }
 
 /* Form */
-label{
+label {
   display: block;
   margin-bottom: 5px;
   font-weight: 500;
 }
-.input_group{
+
+.input_group {
   margin-bottom: 15px;
 }
-.form_control{
+
+.form_control {
   height: 40px;
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 5px;
   font-weight: normal;
 }
-.form_control::placeholder{
+
+.form_control::placeholder {
   font-weight: normal;
   color: #999;
 }
-textarea.form_control{
+
+textarea.form_control {
   min-height: 120px;
 }
-.form_error{
+
+.form_error {
   color: var(--primary-color);
   font-size: 12px;
   margin-top: 5px;
@@ -119,7 +124,7 @@ textarea.form_control{
 }
 
 /* Sign In and Sign Up */
-.auth_form_wrapper{
+.auth_form_wrapper {
   max-width: 450px;
   margin: 0 auto;
   background-color: #fff;
@@ -127,21 +132,24 @@ textarea.form_control{
   padding: 30px 20px;
   border-radius: 5px;
 }
-.auth_form_wrapper h2{
+
+.auth_form_wrapper h2 {
   text-align: center;
   margin-bottom: 25px;
   color: var(--primary-color);
   font-size: 22px;
   text-transform: uppercase;
 }
-.auth_toggler{
+
+.auth_toggler {
   text-align: center;
   padding-top: 30px;
   color: #999;
   font-size: 14px;
   font-weight: 500;
 }
-.auth_toggler a{
+
+.auth_toggler a {
   color: var(--primary-color);
   padding-left: 5px;
   font-weight: 600;
@@ -183,6 +191,52 @@ textarea.form_control{
 }
 
 
+/* Orders Page (Admin & User) */
+.order_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  text-align: center;
+}
+
+.order_item p {
+  margin-bottom: 5px;
+  color: #666;
+  font-weight: 500;
+}
+
+.order_item h5 {
+  color: var(--primary-color);
+  font-size: 18px;
+}
+
+@media only screen and (max-width:600px) {
+  .order_item {
+    flex-direction: column;
+  }
+
+  .order_item div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .order_item div:last-child {
+    margin-bottom: 0;
+  }
+
+  .order_item div h5 {
+    font-size: 15px;
+  }
+}
+
+
 /* Admin Panel */
 .admin-page {
   padding-left: 300px;
@@ -193,6 +247,22 @@ textarea.form_control{
   height: 100%;
   min-height: 100vh;
 }
+.admin_orders_list{
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  background-color: #fff;
+  padding: 30px 20px;
+}
+.admin_orders_list .order_item{
+  background-color: #F5F5F5;
+  box-shadow: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+}
+.admin_orders_list .order_item h5{
+  color: #444;
+  font-size: 16px;
+}
 
 @media only screen and (max-width:1200px) {
   .admin-page {
@@ -202,23 +272,32 @@ textarea.form_control{
     padding-bottom: 30px;
   }
 }
-@media only screen and (max-width:768px){
+
+@media only screen and (max-width:768px) {
   .section_header h4 {
     font-size: 18px;
   }
-  
+
   .section_header h2 {
     font-size: 30px;
     margin-bottom: 20px;
   }
 }
 
-@media only screen and (max-width:450px){
+@media only screen and (max-width:450px) {
   .section_header h4 {
     font-size: 16px;
   }
-  
+
   .section_header h2 {
     font-size: 25px;
+  }
+
+  /* Admin */
+  .admin_orders_list{
+    padding: 20px 10px;
+  }
+  .admin_orders_list .order_item h5{
+    font-size: 15px;
   }
 }

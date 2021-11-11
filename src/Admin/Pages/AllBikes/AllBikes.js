@@ -8,9 +8,27 @@ import Loading from '../../../Components/Loading/Loading';
 import { Link } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import axios from 'axios';
+import { successNotify, errorNotify } from '../../../utils/toastify';
 
 const AllBikes = () => {
-    const { bikes, loading } = useContext(ProductContext);
+    const { bikes, loading, setBikes } = useContext(ProductContext);
+
+    const handleDeleteBike = async (id) => {
+        const agree = window.confirm('Delete this bike?');
+
+        if (agree) {
+            try {
+                await axios.delete(`http://localhost:8000/products/${id}`);
+                const restBikes = bikes.filter(bike => bike._id !== id);
+                setBikes(restBikes);
+                successNotify('Bike deleted successfully');
+            } catch (error) {
+                console.log(error);
+                errorNotify('Something went wrong!')
+            }
+        }
+    }
 
     return (
         <>
@@ -43,11 +61,13 @@ const AllBikes = () => {
                                         </p>
                                     </div>
                                     <div className="admin_bike_action">
-                                        <DeleteOutlineIcon className="admin_delete_icon" sx={{
-                                                width: '35px',
-                                                height: '35px',
-                                                marginRight:'10px'
-                                            }} />
+                                        <DeleteOutlineIcon 
+                                        onClick={()=>handleDeleteBike(bike._id)}
+                                        className="admin_delete_icon" sx={{
+                                            width: '35px',
+                                            height: '35px',
+                                            marginRight: '10px'
+                                        }} />
                                         <Link to={`/admin/bikes/edit/${bike._id}`}>
                                             <EditIcon className="admin_edit_icon" sx={{
                                                 width: '35px',
