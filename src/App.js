@@ -23,6 +23,7 @@ import Payment from './Pages/Payment/Payment';
 import AddReview from './Pages/AddReview/AddReview';
 import EditBike from './Admin/Pages/EditBike/EditBike';
 import AllOrders from './Admin/Pages/AllOrders/AllOrders';
+import EditOrder from './Admin/Pages/EditOrder/EditOrder';
 
 const App = () => {
 
@@ -70,6 +71,9 @@ const App = () => {
         </AdminRoute>
         <AdminRoute exact path="/admin/orders">
           <AllOrders />
+        </AdminRoute>
+        <AdminRoute exact path="/admin/orders/edit/:id">
+          <EditOrder />
         </AdminRoute>
 
         <Route exact path="/signin">

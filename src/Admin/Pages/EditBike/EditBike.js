@@ -46,7 +46,9 @@ const EditBike = () => {
         try {
             const { data } = await axios.put(`http://localhost:8000/products/${id}`, bikeData);
             const restBikes = bikes.filter(bike => bike._id !== data._id);
-            setBikes([ data , ...restBikes]);
+            const newBikes = [data, ...restBikes]
+            const sortedBikes = newBikes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setBikes(sortedBikes);
             successNotify('Bike updated successfully');
             setProgress(false);
             history.push('/admin/bikes');

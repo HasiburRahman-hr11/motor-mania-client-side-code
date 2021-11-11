@@ -15,6 +15,22 @@ const AllOrders = () => {
 
     const { orders, setOrders, loading } = useContext(OrderContext);
 
+    const handleDeleteOrder = async (id) => {
+        const agree = window.confirm('Delete this bike?');
+
+        if (agree) {
+            try {
+                await axios.delete(`http://localhost:8000/orders/${id}`);
+                const restBikes = orders.filter(order => order._id !== id);
+                setOrders(restBikes);
+                successNotify('Order deleted successfully');
+            } catch (error) {
+                console.log(error);
+                errorNotify('Something went wrong!')
+            }
+        }
+    }
+
     if (loading) {
         return <Loading />
     }
@@ -39,7 +55,7 @@ const AllOrders = () => {
                                 <li key={order._id} className="order_item">
                                     <Box component="div" sx={{
                                         width: {
-                                            md: '60%',
+                                            sm: '50%',
                                             xs: '100%'
                                         },
                                         textAlign: 'left'
@@ -49,7 +65,7 @@ const AllOrders = () => {
                                     </Box>
                                     <Box component="div" sx={{
                                         width: {
-                                            md: '30%',
+                                            sm: '25%',
                                             xs: '100%'
                                         },
                                         textAlign: 'left'
@@ -59,18 +75,29 @@ const AllOrders = () => {
                                     </Box>
                                     <Box component="div" sx={{
                                         width: {
-                                            md: '30%',
+                                            sm: '15%',
+                                            xs: '100%'
+                                        },
+                                        textAlign: 'left'
+                                    }}>
+                                        <p>Status</p>
+                                        <h5>{order.status}</h5>
+                                    </Box>
+                                    <Box component="div" sx={{
+                                        width: {
+                                            sm: '20%',
                                             xs: '100%'
                                         },
                                         textAlign: 'right'
                                     }}>
                                         <p>Action</p>
                                         <Box component="div" sx={{
-                                            display:'flex',
-                                            alignItems:'center',
-                                            justifyContent:'flex-end !important'
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'flex-end !important'
                                         }}>
                                             <DeleteOutlineIcon
+                                                onClick={() => handleDeleteOrder(order._id)}
                                                 className="admin_edit_icon"
                                                 sx={{
                                                     width: '35px',
@@ -82,7 +109,7 @@ const AllOrders = () => {
                                                 <EditIcon className="admin_edit_icon" sx={{
                                                     width: '35px',
                                                     height: '35px',
-                                                    marginLeft:'10px'
+                                                    marginLeft: '10px'
                                                 }} />
                                             </Link>
                                         </Box>
