@@ -27,7 +27,7 @@ const Signup = () => {
             .min(6, 'Password must be at least 6 characters'),
         confirmPassword: Yup.string()
             .required('Please confirm your password ')
-            .oneOf([Yup.ref('password')], 'Passwords do not match')
+            .oneOf([Yup.ref('password')], 'Passwords does not match')
     });
     const formOptions = { resolver: yupResolver(validationSchema) };
 
