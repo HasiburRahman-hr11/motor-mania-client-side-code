@@ -35,7 +35,7 @@ const AddBike = () => {
         e.preventDefault();
         setProgress(true);
         try {
-            const { data } = await axios.post('http://localhost:8000/products/create', bikeData);
+            const { data } = await axios.post('https://motor-mania.herokuapp.com/products/create', bikeData);
             setBikeData({
                 name: '',
                 brand: '',
