@@ -9,9 +9,14 @@ import Footer from '../../Components/Footer/Footer';
 import PageBanner from '../../Components/PageBanner/PageBanner';
 import { ProductContext } from '../../Context/ProductContext/ProductContext';
 
+import Loading from '../../Components/Loading/Loading';
+
 const Shop = () => {
 
-    const {bikes} = useContext(ProductContext);
+    const {bikes , loading} = useContext(ProductContext);
+    if (loading) {
+        return <Loading />
+    }
     return (
         <>
             <Header />
