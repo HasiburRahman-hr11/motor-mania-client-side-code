@@ -1,17 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../../Components/Navbar/Navbar';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
+import {useParams , useHistory} from 'react-router-dom';
 
 import axios from 'axios';
 import { successNotify, errorNotify } from '../../../utils/toastify';
 import { ProductContext } from '../../../Context/ProductContext/ProductContext';
+import Loading from '../../../Components/Loading/Loading';
 
-const AddBike = () => {
+const EditBike = () => {
+
+    const {id} = useParams();
+    const history = useHistory();
 
     const {bikes , setBikes} = useContext(ProductContext);
+    const [bike , setBike] = useState({});
+    const [loading , setLoading] = useState(true);
     const [bikeData, setBikeData] = useState({
         name: '',
         brand: '',
@@ -37,32 +44,52 @@ const AddBike = () => {
         e.preventDefault();
         setProgress(true);
         try {
-            const { data } = await axios.post('https://motor-mania.herokuapp.com/products/create', bikeData);
-            setBikeData({
-                name: '',
-                brand: '',
-                model: '',
-                price: '',
-                year: '',
-                type: '',
-                engineType: '',
-                topSpeed: '',
-                power: '',
-                displacement: '',
-                stroke: '',
-                description: '',
-                thumbnail: ''
-            });
-
-            setBikes([data , ...bikes]);
-            successNotify('Bike added successfully');
+            const { data } = await axios.put(`http://localhost:8000/products/${id}`, bikeData);
+            const restBikes = bikes.filter(bike => bike._id !== data._id);
+            setBikes([ data , ...restBikes]);
+            successNotify('Bike updated successfully');
             setProgress(false);
+            history.push('/admin/bikes');
         } catch (error) {
             console.log(error);
             errorNotify('Something went wrong!');
             setProgress(false);
         }
     }
+
+    useEffect(()=>{
+        const getBikeInfo = async() =>{
+            try {
+                const {data} = await axios.get(`http://localhost:8000/products/${id}`);
+                setBikeData({
+                    name: data.name,
+                    brand: data.brand,
+                    model: data.model,
+                    price: data.price,
+                    year: data.year,
+                    type: data.type,
+                    engineType: data.engineType,
+                    topSpeed: data.topSpeed,
+                    power: data.power,
+                    displacement: data.displacement,
+                    stroke: data.stroke,
+                    description: data.description,
+                    thumbnail: data.thumbnail
+                })
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
+                setLoading(false);
+            }
+        }
+        getBikeInfo();
+    },[id]);
+
+    if(loading){
+        return <Loading/>
+    }
+
+
     return (
         <>
             <Navbar />
@@ -74,7 +101,7 @@ const AddBike = () => {
                     fontFamily: "'Oswald', sans-serif",
                     color: 'var(--primary-color)'
                 }}>
-                    Add New Bike
+                    Edit Bike Info
                 </Typography>
 
                 <Box component="div" sx={{
@@ -269,7 +296,7 @@ const AddBike = () => {
                                     color: '#fff',
                                     width: '25px !important',
                                     height: '25px !important'
-                                }} /> : 'Add Bike'}
+                                }} /> : 'Update Bike'}
                             </button>
                         </Box>
 
@@ -281,4 +308,4 @@ const AddBike = () => {
     );
 };
 
-export default AddBike;
+export default EditBike;

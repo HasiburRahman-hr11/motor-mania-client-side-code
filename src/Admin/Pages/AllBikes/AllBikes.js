@@ -36,7 +36,7 @@ const AllBikes = () => {
                                         <img src={bike.thumbnail} alt={bike.name} />
                                     )}
                                     <div className="admin_bike_info">
-                                        <h4>{bike.name}</h4>
+                                        <h4><Link to={`/bikes/${bike._id}`}>{bike.name}</Link></h4>
                                         <p>
                                             <span>Model: <strong>{bike.model}</strong></span>
                                             <span>Brand: <strong>{bike.brand}</strong></span>
@@ -48,7 +48,7 @@ const AllBikes = () => {
                                                 height: '35px',
                                                 marginRight:'10px'
                                             }} />
-                                        <Link to={`/admin/bikes/${bike._id}`}>
+                                        <Link to={`/admin/bikes/edit/${bike._id}`}>
                                             <EditIcon className="admin_edit_icon" sx={{
                                                 width: '35px',
                                                 height: '35px'
