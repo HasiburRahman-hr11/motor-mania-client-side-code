@@ -3,8 +3,8 @@ import { Route, Redirect } from 'react-router-dom'
 import Loading from '../Components/Loading/Loading';
 import useAuth from '../hooks/useAuth';
 
-const PrivateRoute = ({ children, ...rest }) => {
-    const { user, loading } = useAuth();
+const AdminRoute = ({ children, ...rest }) => {
+    const { user, loading, isAdmin } = useAuth();
 
     if (loading) {
         return <Loading />
@@ -14,7 +14,7 @@ const PrivateRoute = ({ children, ...rest }) => {
         <Route
             {...rest}
             render={({ location }) =>
-                user.email || user.displayName ? (
+                user.email && isAdmin ? (
                     children
                 ) : (
                     <Redirect
@@ -29,4 +29,4 @@ const PrivateRoute = ({ children, ...rest }) => {
     );
 };
 
-export default PrivateRoute;
+export default AdminRoute;

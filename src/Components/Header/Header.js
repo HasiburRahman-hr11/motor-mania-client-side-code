@@ -20,7 +20,7 @@ import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
 
-    const { user } = useAuth();
+    const { user , firebaseSignOut , isAdmin } = useAuth();
 
     const [sticky, setSticky] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -85,7 +85,7 @@ const Header = () => {
                                         </IconButton>
                                     ) : (
                                         <li className="menu_item" onClick={() => setMenuOpen(false)}>
-                                            <Link exact to="/signin" activeClassName="active">Sign In</Link>
+                                            <Link to="/signin">Sign In</Link>
                                         </li>
                                     )}
 
@@ -128,23 +128,18 @@ const Header = () => {
                                         <MenuItem onClick={() => setMenuOpen(false)}>
                                             <Avatar /> Hello
                                         </MenuItem>
-                                        <MenuItem onClick={() => setMenuOpen(false)}>
-
-                                            <Link to="/my-orders" className="menu_link">
-                                                <Avatar >5</Avatar >
-                                                My Orders
-                                            </Link>
-                                        </MenuItem>
+                                        
                                         <MenuItem onClick={() => {
                                             setMenuOpen(false);
+                                            firebaseSignOut();
                                         }}>
                                             <ListItemIcon>
                                                 <Logout fontSize="small" />
                                             </ListItemIcon>
                                             Logout
                                         </MenuItem>
-                                        {user.isAdmin && (
-                                            <>
+                                        {isAdmin && (
+                                            <div>
                                                 <Divider />
                                                 <MenuItem onClick={() => {
                                                     setMenuOpen(false);
@@ -156,7 +151,7 @@ const Header = () => {
                                                         Dashboard
                                                     </Link>
                                                 </MenuItem>
-                                            </>
+                                            </div>
                                         )}
 
                                     </Menu>

@@ -55,8 +55,8 @@ const Bike = ({ bike }) => {
                     </Grid>
                     <Grid item sm={6} xs={12} className="product_space_item">
                         <div>
-                            <h4>ENGINE POWER</h4>
-                            <p>{bike.power}</p>
+                            <h4>Top Speed</h4>
+                            <p>{bike.topSpeed}</p>
                         </div>
                         <div>
                             <h4>BORE/STROKE</h4>

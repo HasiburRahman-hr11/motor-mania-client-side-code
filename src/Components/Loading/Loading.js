@@ -16,7 +16,7 @@ const Loading = () => {
             justifyContent: 'center',
             zIndex: '999'
         }}>
-            <CircularProgress sx={{ color: 'var(--color-primary)' }} />
+            <CircularProgress sx={{ color: 'var(--primary-color)' }} />
         </Box>
     );
 };

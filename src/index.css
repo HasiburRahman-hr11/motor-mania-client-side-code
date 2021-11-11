@@ -108,6 +108,15 @@ label{
   font-weight: normal;
   color: #999;
 }
+textarea.form_control{
+  min-height: 120px;
+}
+.form_error{
+  color: var(--primary-color);
+  font-size: 12px;
+  margin-top: 5px;
+  font-weight: 500;
+}
 
 /* Sign In and Sign Up */
 .auth_form_wrapper{

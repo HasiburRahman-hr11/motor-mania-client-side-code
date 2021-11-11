@@ -8,10 +8,13 @@ import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
+import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
 
-    const [openMenu, setOpenMenu] = useState(false)
+    const { firebaseSignOut } = useAuth();
+
+    const [openMenu, setOpenMenu] = useState(false);
 
     return (
         <>
@@ -56,7 +59,7 @@ const Navbar = () => {
                     </ul>
 
                     <Box component="div" onClick={() => setOpenMenu(false)}>
-                        <p className="admin-logout">
+                        <p className="admin-logout" onClick={() => firebaseSignOut()}>
                             <LogoutIcon className="admin-menu-icon" />
                             Logout
                         </p>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, updateProfile, getIdToken } from "firebase/auth";
 import initializeFirebase from "../Firebase/firebase.init";
 import axios from 'axios';
+import { successNotify, errorNotify } from '../utils/toastify'
 
 // Firebase Initialization
 initializeFirebase();
@@ -9,6 +10,7 @@ initializeFirebase();
 const useFirebase = () => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
+    const [progress, setProgress] = useState(false);
     const [error, setError] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
     const [token, setToken] = useState('');
@@ -17,8 +19,9 @@ const useFirebase = () => {
     const googleProvider = new GoogleAuthProvider();
 
     // Handle Registration
-    const firebaseSignUp = (userName, email, password, history) => {
+    const firebaseSignUp = (userName, email, password, location, history) => {
         setLoading(true);
+        setProgress(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
 
@@ -29,7 +32,10 @@ const useFirebase = () => {
                 });
 
                 // Save user to Database
-                // saveUserToDB(userName, email);
+                saveUserToDB(userName, email);
+
+                // Toast Notification
+                successNotify('Account Created Successfully!')
 
                 // Update user profile to Firebase
                 updateProfile(auth.currentUser, {
@@ -41,17 +47,23 @@ const useFirebase = () => {
 
                 });
                 setError('');
-                history.push('/signin');
+                const path = location?.state?.from || '/'
+                history.push(path);
             })
             .catch((error) => {
                 setError(error.message);
+                errorNotify(error.message);
             })
-            .finally(() => setLoading(false));
+            .finally(() => {
+                setLoading(false);
+                setProgress(false);
+            });
     }
 
     // Handle Login User
     const firebaseSignIn = (email, password, location, history) => {
         setLoading(true);
+        setProgress(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 setError('');
@@ -60,8 +72,12 @@ const useFirebase = () => {
             })
             .catch((error) => {
                 setError(error.message);
+                errorNotify(error.message);
             })
-            .finally(() => setLoading(false));
+            .finally(() => {
+                setLoading(false);
+                setProgress(false);
+            });
     }
 
     // Handle Log Out
@@ -74,6 +90,16 @@ const useFirebase = () => {
         });
     }
 
+    // Save User to Database
+    const saveUserToDB = async (userName, email) => {
+        try {
+            const { data } = await axios.post('http://localhost:8000/users/create', { userName, email });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     // Change User State automatically
     useEffect(() => {
@@ -82,12 +108,12 @@ const useFirebase = () => {
                 setUser(user);
 
                 // Set Admin
-                // const { data } = await axios.get(`http://localhost:8000/users/${user.email}`);
-                // if (data?.role === 'admin') {
-                //     setIsAdmin(true);
-                // } else {
-                //     setIsAdmin(false);
-                // }
+                const { data } = await axios.get(`http://localhost:8000/users/${user.email}`);
+                if (data?.role === 'admin') {
+                    setIsAdmin(true);
+                } else {
+                    setIsAdmin(false);
+                }
 
                 // Get Token
                 getIdToken(user)
@@ -101,7 +127,7 @@ const useFirebase = () => {
         });
 
         return () => unsubscribe;
-    }, [auth]);
+    }, []);
 
 
     return {
@@ -111,6 +137,8 @@ const useFirebase = () => {
         setUser,
         loading,
         setLoading,
+        progress,
+        setProgress,
         error,
         setError,
         firebaseSignUp,

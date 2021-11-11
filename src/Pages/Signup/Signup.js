@@ -5,14 +5,14 @@ import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import useAuth from '../../hooks/useAuth';
 
 const Signup = () => {
 
-    const { firebaseSignUp } = useAuth();
+    const { firebaseSignUp, progress } = useAuth();
     const location = useLocation();
-    const path = location.state?.from.pathname || '/';
     const history = useHistory();
 
     // Form Validation using react-hook-form and yup
@@ -36,22 +36,9 @@ const Signup = () => {
     const { errors } = formState;
 
     const onSubmit = data => {
-        console.log(data);
+        const userName = data.firstName + ' ' + data.lastName;
+        firebaseSignUp(userName, data.email, data.password, location, history);
     };
-
-    const [signUpInfo, setSignUpInfo] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    });
-
-    const handleSignUp = (e) => {
-        e.preventDefault();
-
-        console.log(signUpInfo)
-    }
 
     return (
         <Box component="div" sx={{
@@ -73,6 +60,7 @@ const Signup = () => {
                                 name="firstName"
                                 {...register("firstName", { required: true })}
                             />
+                            {errors.firstName && <p className="form_error">{errors.firstName.message}</p>}
                         </div>
                         <div className="input_group">
                             <input
@@ -82,6 +70,7 @@ const Signup = () => {
                                 name="lastName"
                                 {...register("lastName", { required: true })}
                             />
+                            {errors.lastName && <p className="form_error">{errors.lastName.message}</p>}
                         </div>
                         <div className="input_group">
                             <input
@@ -89,9 +78,9 @@ const Signup = () => {
                                 className="form_control"
                                 placeholder="Email Address"
                                 name="email"
-                                required
                                 {...register("email", { required: true })}
                             />
+                            {errors.email && <p className="form_error">{errors.email.message}</p>}
                         </div>
                         <div className="input_group">
                             <input
@@ -101,6 +90,7 @@ const Signup = () => {
                                 name="password"
                                 {...register('password', { required: true })}
                             />
+                            {errors.password && <p className="form_error">{errors.password.message}</p>}
                         </div>
                         <div className="input_group">
                             <input
@@ -110,13 +100,24 @@ const Signup = () => {
                                 name="confirmPassword"
                                 {...register('confirmPassword', { required: true })}
                             />
+                            {errors.confirmPassword && <p className="form_error">{errors.confirmPassword.message}</p>}
                         </div>
 
                         <Box component="div" sx={{
                             textAlign: 'center',
                             marginTop: '30px'
                         }}>
-                            <button type="submit" className="btn btn_primary">Signup</button>
+                            <button
+                                type="submit"
+                                className="btn btn_primary"
+                                onClick={handleSubmit(onSubmit)}
+                            >
+                                {progress ? <CircularProgress sx={{
+                                    color: '#fff',
+                                    width: '25px !important',
+                                    height: '25px !important'
+                                }} /> : 'Sign Up'}
+                            </button>
                         </Box>
 
                         <div className="auth_toggler">
