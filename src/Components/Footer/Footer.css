@@ -49,36 +49,6 @@ ul.social_list li a{
 ul.social_list li a:hover{
     color: var(--primary-color);
 }
-.newslatter_box{
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    max-width: 270px;
-}
-.newslatter_box input{
-    background-color: transparent;
-    border: 0;
-    border-bottom: 1px solid #ddd;
-    padding: 0 10px;
-    height: 40px;
-    color: #fff;
-}
-.newslatter_box button{
-    background-color: transparent;
-    color: #fff;
-    border: 0;
-    box-shadow: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transition: all 0.4s ease;
-    padding: 5px;
-    padding-right: 0;
-}
-.newslatter_box button:hover{
-    right: -5px;
-}
 
 .fooetr_bottom{
     padding: 0 30px;

@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Review.css';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
@@ -16,10 +16,12 @@ import axios from 'axios';
 import Loading from '../../Components/Loading/Loading';
 import { Link } from 'react-router-dom';
 import { successNotify, errorNotify } from '../../utils/toastify';
+import { ReviewContext } from '../../Context/ReviewContext/ReviewContext';
 
 const Reviews = () => {
 
     const { user } = useAuth();
+    const { reviews, setReviews } = useContext(ReviewContext);
     const [myReviews, setMyReviews] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -30,8 +32,11 @@ const Reviews = () => {
         if (agree) {
             try {
                 await axios.delete(`https://motor-mania.herokuapp.com/reviews/${id}`);
-                const restReviews = myReviews.filter(review => review._id !== id);
-                setMyReviews(restReviews);
+                const restMyReviews = myReviews.filter(review => review._id !== id);
+                setMyReviews(restMyReviews);
+
+                const restReviews = reviews.filter(review => review._id !== id)
+                setReviews(restReviews);
 
                 successNotify('Review deleted successfully');
             } catch (error) {
@@ -75,15 +80,15 @@ const Reviews = () => {
                                     <Grid item md={4} sm={6} xs={12} key={review._id}>
                                         <div className="review_item">
                                             <Box component="div" sx={{
-                                                display:'flex',
-                                                justifyContent:'space-between',
-                                                mb:'20px'
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                mb: '20px'
                                             }}>
                                                 <div>
                                                     <h3>{review.name}</h3>
                                                     <p><Rating name="read-only" value={review.rating} readOnly sx={{
-                                                        color:'var(--primary-color)',
-                                                        fontSize:'16px'
+                                                        color: 'var(--primary-color)',
+                                                        fontSize: '16px'
                                                     }} /></p>
                                                 </div>
                                                 <DeleteOutlineIcon
@@ -100,9 +105,9 @@ const Reviews = () => {
                                             </Box>
 
                                             <p style={{
-                                                fontSize:'14px',
-                                                color:'#666',
-                                                lineHeight:'23px'
+                                                fontSize: '14px',
+                                                color: '#666',
+                                                lineHeight: '23px'
                                             }}>{review.review}</p>
 
                                         </div>

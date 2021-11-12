@@ -18,7 +18,7 @@ const Footer = () => {
                     <Grid container spacing={4}>
                         <Grid item md={3} sm={6} xs={12}>
                             <div className="footer_widget">
-                                <h3 className="widget_title">This is TourX</h3>
+                                <h3 className="widget_title">Motor Mania</h3>
                                 <div className="widget_body">
                                     <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid maxime aut ut voluptate dolorum nisi ducimus ratione</p>
 
@@ -63,17 +63,17 @@ const Footer = () => {
                         </Grid>
                         <Grid item md={3} sm={6} xs={12}>
                             <div className="footer_widget">
-                                <h3 className="widget_title">Links</h3>
+                                <h3 className="widget_title">Quick Links</h3>
                                 <div className="widget_body">
                                     <ul>
                                         <li>
-                                            <Link to="/about">About Us</Link>
+                                            <Link to="#">About Us</Link>
                                         </li>
                                         <li>
-                                            <Link to="/contact">Contact Us</Link>
+                                            <Link to="#">Contact Us</Link>
                                         </li>
                                         <li>
-                                            <Link to="/login">Login</Link>
+                                            <Link to="/signin">Login</Link>
                                         </li>
                                         <li>
                                             <Link to="/my-orders">My Orders</Link>
@@ -84,15 +84,10 @@ const Footer = () => {
                         </Grid>
                         <Grid item md={3} sm={6} xs={12}>
                             <div className="footer_widget">
-                                <h3 className="widget_title">Newsletter</h3>
+                                <h3 className="widget_title">Spacial Offer</h3>
                                 <div className="widget_body">
-                                    <p>Sign up for our newsletter and get updated about our latest promotions</p>
-                                    <div className="newslatter_box">
-                                        <input type="email" placeholder="Your Email" />
-                                        <button>
-                                            <ArrowRightAltIcon />
-                                        </button>
-                                    </div>
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, cupiditate. Lorem ipsum dolor sit amet.</p>
+                                    
                                 </div>
                             </div>
                         </Grid>
