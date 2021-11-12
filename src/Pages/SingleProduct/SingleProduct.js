@@ -101,7 +101,7 @@ const SingleProduct = () => {
                                     </div>
                                     <div className="info_item">
                                         <img src={engine} alt="Engine Type" />
-                                        <h4>ENGINE POWER</h4>
+                                        <h4>ENGINE</h4>
                                         <p>{bike.engineType}</p>
                                     </div>
                                     <div className="info_item">
