@@ -73,8 +73,7 @@ const AddBike = () => {
                     fontSize: '22px',
                     fontWeight: 'bold',
                     mb: '25px',
-                    fontFamily: "'Oswald', sans-serif",
-                    color: 'var(--primary-color)'
+                    fontFamily: "'Oswald', sans-serif"
                 }}>
                     Add New Bike
                 </Typography>

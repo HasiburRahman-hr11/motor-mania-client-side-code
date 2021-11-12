@@ -70,7 +70,7 @@ const AllUsers = () => {
                                         textAlign: 'left'
                                     }}>
                                         <p>Name</p>
-                                        <h5>{user.userName}</h5>
+                                        <h5 style={{textTransform:'capitalize'}}>{user.userName}</h5>
                                     </Box>
                                     <Box component="div" sx={{
                                         width: {
@@ -80,7 +80,7 @@ const AllUsers = () => {
                                         textAlign: 'left'
                                     }}>
                                         <p>Role</p>
-                                        <h5>{user.role}</h5>
+                                        <h5 style={{textTransform:'capitalize'}}>{user.role}</h5>
                                     </Box>
                                     <Box component="div" sx={{
                                         width: {
